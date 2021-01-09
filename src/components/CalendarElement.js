@@ -1,79 +1,77 @@
-import React from 'react';
-import Schedule from './Schedule';
+import React, { useState } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import TextField from '@material-ui/core/TextField';
+// import { makeStyles } from '@material-ui/core/styles';
+// import Table from '@material-ui/core/Table';
+// import TableBody from '@material-ui/core/TableBody';
+// import TableCell from '@material-ui/core/TableCell';
+// import TableContainer from '@material-ui/core/TableContainer';
+// import TableRow from '@material-ui/core/TableRow';
+// import Paper from '@material-ui/core/Paper';
+// import Modal from '@material-ui/core/Modal';
+// import TextField from '@material-ui/core/TextField';
+// import Button from '@material-ui/core/Button';
 
-function rand() {
-    return Math.round(Math.random() * 20) - 10;
-}
+// const [title, setTitle] = useState("");
+// const [time, setTime] = useState("");
+// const [place, setPlace] = useState("");
+// const [explanation, setExplanation] = useState("");
+// const [schedules, setSchedules] = useState([]);
 
-function getModalStyle() {
-    const top = 50 + rand();
-    const left = 50 + rand();
+// function createSchedule(title, time, place, explanation) {
+//     return { title, time, place, explanation };
+// }
 
-    return {
-        top: `${top}%`,
-        left: `${left}%`,
-        transform: `translate(-${top}%, -${left}%)`,
-    };
-}
+// function getModalStyle() {
+//     const top = 100;
+//     const left = 100;
 
-const useStyles = makeStyles((theme) => ({
-    paper: {
-        position: 'absolute',
-        width: 400,
-        backgroundColor: theme.palette.background.paper,
-        border: '2px solid #000',
-        boxShadow: theme.shadows[5],
-        padding: theme.spacing(2, 4, 3),
-    },
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-}));
+//     return {
+//         top: `${top}%`,
+//         left: `${left}%`,
+//         transform: `translate(-${top}%, -${left}%)`,
+//     };
+// }
+
+// /*************modal**************** */
+// const [modalStyle] = React.useState(getModalStyle);
+// const [open, setOpen] = React.useState(false);
+
+// const handleOpen = () => {
+//     setOpen(true);
+// };
+
+// const handleClose = () => {
+//     setOpen(false);
+// };
+// /*************modal**************** */
+
+// const onSave = () => {
+//     let newSchedules = schedules.slice();
+//     newSchedules.push(createSchedule(title, time, place, explanation));
+//     setSchedules(newSchedules);
+//     setTitle("");
+//     setTime("");
+//     setPlace("");
+//     setExplanation("");
+// }
+
+// const body = (
+//     <div className={classes.paper}>
+//         <form className={classes.root} noValidate autoComplete="off">
+//             <TextField label="title" onChange={(e) => setTitle(e.target.value)} />
+//             <TextField label="time" onChange={(e) => setTime(e.target.value)} />
+//             <TextField label="place" onChange={(e) => setPlace(e.target.value)} />
+//             <TextField label="explanation" onChange={(e) => setExplanation(e.target.value)} />
+//             <Button onClick={onSave} variant="contained" color="primary" href="#contained-buttons">
+//                 save
+//             </Button>
+//         </form>
+//     </div>
+// );
 
 const CalendarElement = () => {
-    const classes = useStyles();
-
-    const [modalStyle] = React.useState(getModalStyle);
-    const [open, setOpen] = React.useState(false);
-
-    const handleOpen = () => {
-        setOpen(true);
-    };
-
-    const handleClose = () => {
-        setOpen(false);
-    };
-
-    const body = (
-        <div style={modalStyle} className={classes.paper}>
-            <form className={classes.root} noValidate autoComplete="off">
-                <TextField id="standard-basic" label="Standard" />
-                <TextField id="filled-basic" label="Filled" variant="filled" />
-                <TextField id="outlined-basic" label="Outlined" variant="outlined" />
-            </form>
-        </div>
-    );
     return (
-        <div>
-            <div onClick={handleOpen}>
-                <Schedule></Schedule>
-            </div>
-            <Modal
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="simple-modal-title"
-                aria-describedby="simple-modal-description"
-            >
-                {body}
-            </Modal>
-        </div>
+        <div></div>
     );
 }
 
