@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { connect } from 'react-redux';
+import { nextMonthCalender, previousMonthCalender, changeMonthCalender } from './Store';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Navigation = () => {
+const Navigation = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -29,8 +31,9 @@ const Navigation = () => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        News
-              </Typography>
+                        <button onClick={props.onClickPrevious}>＜</button>
+                        <button onClick={props.onClickNext}>＞</button>
+                    </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
@@ -38,4 +41,15 @@ const Navigation = () => {
     );
 }
 
-export default Navigation
+function calenderStateToProps(state) {
+    return state;
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        onClickPrevious: () => dispatch({ type: "PREVIOUS" }),
+        onClickNext: () => dispatch({ type: "NEXT" }),
+    };
+}
+
+export default connect(calenderStateToProps,mapDispatchToProps)(Navigation)

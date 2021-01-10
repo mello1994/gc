@@ -10,6 +10,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     table: {
@@ -27,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
 const dayOfWeekStr = ["日", "月", "火", "水", "木", "金", "土"]
 
-const CalendarBoard = () => {
+const CalendarBoard = (props) => {
     const classes = useStyles();
 
 
-    const weeks = getCalender(new Date());
+    console.log(props.currentDate);
+    const weeks = getCalender(props.currentDate);
     return (
         <TableContainer component={Paper}>
             <Table className={classes.table} aria-label="simple table">
@@ -119,5 +121,8 @@ const CalendarBoard = () => {
         </TableContainer>
     );
 }
+function calenderStateToProps(state) {
+    return state;
+}
 
-export default CalendarBoard
+export default connect(calenderStateToProps)(CalendarBoard)
