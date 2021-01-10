@@ -89,7 +89,7 @@ const CalendarBoard = (props) => {
                 <TextField
                     margin="dense"
                     id="time"
-                    label="title"
+                    label="time"
                     type="text"
                     fullWidth
                     onChange={(e) => setTime(e.target.value)}
