@@ -1,17 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Schedule from './Schedule';
 import { connect } from 'react-redux';
 
-const CalendarElement = (props, {date}) => {
-    const schedules = props.schedules;
-    const res = schedules.filter((value, index, array) => {
-        return value.date === props.date;
-    })
+const CalendarElement = (props) => {
     return (
         <div>
-            {res.map((s) => (
-                <div>{s.schedule.title}</div>
-            ))}
+            <Schedule date={props.date}></Schedule>
         </div>
     );
 }
