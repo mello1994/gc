@@ -15,3 +15,7 @@ export const getCalender = (date) => {
     }
     return result;
 }
+
+export const getStringDate = (date) => {
+    return ('0000' + date.getFullYear()).slice( -4 ) + ('00' + (date.getMonth() + 1)).slice( -2 ) + ('00' + date.getDate()).slice( -2 );
+}

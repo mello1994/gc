@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CalenderElement from './CalendarElement';
-import { getCalender } from '../common/dateUtil';
+import { getCalender, getStringDate } from '../common/dateUtil';
 import AddScheduleDialog from './AddScheduleDialog';
 import '../Calender.css';
 
@@ -44,7 +44,7 @@ const CalendarBoard = (props) => {
     const [time, setTime] = useState("");
     const [place, setPlace] = useState("");
     const [explanation, setExplanation] = useState("");
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState("");
 
     const [open, setOpen] = useState(false);
 
@@ -132,11 +132,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(0, 7).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}
@@ -145,11 +145,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(7, 14).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}
@@ -158,11 +158,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(14, 21).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}
@@ -171,11 +171,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(21, 28).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}
@@ -184,11 +184,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(28, 35).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}
@@ -197,11 +197,11 @@ const CalendarBoard = (props) => {
                             {weeks.slice(35, 42).map((day) => (
                                 day.getDate() === 1 ? (
                                     <React.Fragment>
-                                        <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement></CalenderElement></TableCell>
+                                        <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getMonth() + 1}月{day.getDate()}日</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                     </React.Fragment>
                                 ) : (
                                         <React.Fragment>
-                                            <TableCell id={day} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement></CalenderElement></TableCell>
+                                            <TableCell id={getStringDate(day)} onClick={handleClickOpen} style={{ textAlign: 'center', border: '1px solid #e0e0e0' }}><p>{dayOfWeekStr[day.getDay()]}</p><p>{day.getDate()}</p><CalenderElement date={getStringDate(day)}></CalenderElement></TableCell>
                                         </React.Fragment>
                                     )
                             ))}

@@ -1,7 +1,7 @@
 import { createStore } from 'redux';
 
 const initData = {
-    schedules: [{}],
+    schedules: [],
     currentDate: new Date(),
     nextMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
     previousMonth: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1)
@@ -64,8 +64,6 @@ function changeReduce(state, action) {
 }
 
 function addSchedulesReduce(state, action) {
-    console.log(state);
-    console.log(action);
     let newSchedules = state.schedules.slice();
     newSchedules.push({
         date: action.date,
