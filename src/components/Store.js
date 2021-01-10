@@ -1,6 +1,7 @@
 import { createStore } from 'redux';
 
 const initData = {
+    schedules: [{}],
     currentDate: new Date(),
     nextMonth: new Date(new Date().getFullYear(), new Date().getMonth() + 1, 1),
     previousMonth: new Date(new Date().getFullYear(), new Date().getMonth() - 1, 1)
@@ -14,9 +15,12 @@ export function calenderReducer(state = initData, action) {
 
         case 'PREVIOUS':
             return previousReduce(state);
-        
-        case 'CHANGE_MONTH' :
+
+        case 'CHANGE_MONTH':
             return changeReduce(state, action);
+
+        case 'ADD_SCHEDULES':
+            return addSchedulesReduce(state, action);
 
         default:
             return state;
@@ -28,6 +32,7 @@ function nextReduce(state) {
     const nextMonth = new Date(state.nextMonth.getFullYear(), state.nextMonth.getMonth() + 1, 1);
     const previousMonth = new Date(state.previousMonth.getFullYear(), state.previousMonth.getMonth() + 1, 1);
     return {
+        schedules: state.schedules,
         currentDate: currentDate,
         nextMonth: nextMonth,
         previousMonth: previousMonth
@@ -39,6 +44,7 @@ function previousReduce(state) {
     const nextMonth = new Date(state.nextMonth.getFullYear(), state.nextMonth.getMonth() - 1, 1);
     const previousMonth = new Date(state.previousMonth.getFullYear(), state.previousMonth.getMonth() - 1, 1);
     return {
+        schedules: state.schedules,
         currentDate: currentDate,
         nextMonth: nextMonth,
         previousMonth: previousMonth
@@ -50,28 +56,53 @@ function changeReduce(state, action) {
     const nextMonth = new Date(action.date.getFullYear(), action.date.getMonth() + 1, 1);
     const previousMonth = new Date(action.date.getFullYear(), action.date.getMonth() - 1, 1);
     return {
+        schedules: state.schedules,
         currentDate: currentDate,
         nextMonth: nextMonth,
         previousMonth: previousMonth
     };
 }
 
+function addSchedulesReduce(state, action) {
+    console.log(state);
+    console.log(action);
+    let newSchedules = state.schedules.slice();
+    newSchedules.push({
+        date: action.date,
+        schedule: action.schedule
+    })
+    return {
+        schedules: newSchedules,
+        currentDate: state.currentDate,
+        nextMonth: state.nextMonth,
+        previousMonth: state.previousMonth
+    };
+}
+
 export function nextMonthCalender() {
     return {
-        type:'NEXT'
+        type: 'NEXT'
     }
 }
 
 export function previousMonthCalender() {
     return {
-        type:'PREVIOUS'
+        type: 'PREVIOUS'
     }
 }
 
 export function changeMonthCalender(date) {
     return {
-        type:'CHANGE_MONTH',
-        date:date
+        type: 'CHANGE_MONTH',
+        date: date
+    }
+}
+
+export function addSchedules(date, schedule) {
+    return {
+        type: 'ADD_SCHEDULES',
+        date: date,
+        schedule: schedule
     }
 }
 

@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { nextMonthCalender, previousMonthCalender, changeMonthCalender } from './Store';
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,8 +33,9 @@ const Navigation = (props) => {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
-                        <button onClick={props.onClickPrevious}>＜</button>
-                        <button onClick={props.onClickNext}>＞</button>
+                        <ArrowBackIosIcon onClick={props.onClickPrevious}>＜</ArrowBackIosIcon>
+                        <ArrowForwardIosIcon onClick={props.onClickNext}>＞</ArrowForwardIosIcon>
+                        <span>{props.currentDate.getFullYear()}年{props.currentDate.getMonth() + 1}月</span>
                     </Typography>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
