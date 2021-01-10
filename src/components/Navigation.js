@@ -37,7 +37,6 @@ const Navigation = (props) => {
                         <ArrowForwardIosIcon onClick={props.onClickNext}>＞</ArrowForwardIosIcon>
                         <span>{props.currentDate.getFullYear()}年{props.currentDate.getMonth() + 1}月</span>
                     </Typography>
-                    <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>
         </div>
