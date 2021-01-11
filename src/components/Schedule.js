@@ -13,11 +13,22 @@ const Schedule = (props) => {
     })
 
     const [id, setId] = useState("");
+    const [title, setTitle] = useState("");
+    const [time, setTime] = useState("");
+    const [place, setPlace] = useState("");
+    const [explanation, setExplanation] = useState("");
     const [open, setOpen] = useState(false);
 
     const handleClickOpen = (e) => {
         const id = e.target.id;
         setId(id);
+        const res = props.schedules.filter((value, index, array) => {
+            return value.id === Number(id);
+        })
+        setTitle(res[0].schedule.title);
+        setTime(res[0].schedule.time);
+        setPlace(res[0].schedule.place);
+        setExplanation(res[0].schedule.explanation);
         setOpen(true);
     };
 
@@ -34,6 +45,10 @@ const Schedule = (props) => {
         <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
             <DialogTitle id="form-dialog-title">AddSchedule</DialogTitle>
             <DialogContent>
+                <p>title:{title}</p>
+                <p>time:{time}</p>
+                <p>place:{place}</p>
+                <p>explanation:{explanation}</p>
             </DialogContent>
             <DialogActions>
                 <Button onClick={handleClose} color="primary">
@@ -51,7 +66,7 @@ const Schedule = (props) => {
             {body}
             {res.map((s) => (
                 <div>
-                    <button onClick={handleClickOpen} id={s.id} style={{ backgroundColor: '#3f51b5', width:'100%' }}>{s.schedule.title}</button>
+                    <button onClick={handleClickOpen} id={s.id} style={{ backgroundColor: '#3f51b5', width: '100%' }}>{s.schedule.title}</button>
                 </div>
             ))}
         </div>
@@ -64,7 +79,7 @@ function calenderStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        deleteSchedule: (id) => dispatch({ type: "DELETE_SCHEDULES", id:id })
+        deleteSchedule: (id) => dispatch({ type: "DELETE_SCHEDULES", id: id })
     };
 }
 
