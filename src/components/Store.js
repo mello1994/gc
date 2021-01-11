@@ -22,6 +22,9 @@ export function calenderReducer(state = initData, action) {
         case 'ADD_SCHEDULES':
             return addSchedulesReduce(state, action);
 
+        case 'DELETE_SCHEDULES':
+            return deleteSchedulesReduce(state, action);
+
         default:
             return state;
     }
@@ -64,10 +67,28 @@ function changeReduce(state, action) {
 }
 
 function addSchedulesReduce(state, action) {
+    let id = 1;
+    if (state.schedules.length !== 0) {
+        id = state.schedules[state.schedules.length - 1].id + 1;
+    }
     let newSchedules = state.schedules.slice();
     newSchedules.push({
+        id: id,
         date: action.date,
         schedule: action.schedule
+    })
+    return {
+        schedules: newSchedules,
+        currentDate: state.currentDate,
+        nextMonth: state.nextMonth,
+        previousMonth: state.previousMonth
+    };
+}
+
+function deleteSchedulesReduce(state, action) {
+    const schedules = state.schedules;
+    const newSchedules = schedules.filter((value, index, array) => {
+        return value.id !== Number(action.id);
     })
     return {
         schedules: newSchedules,
@@ -101,6 +122,13 @@ export function addSchedules(date, schedule) {
         type: 'ADD_SCHEDULES',
         date: date,
         schedule: schedule
+    }
+}
+
+export function deleteSchedules(id) {
+    return {
+        type: 'DELETE_SCHEDULES',
+        id: id
     }
 }
 

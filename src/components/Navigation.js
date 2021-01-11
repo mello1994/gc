@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
-import { nextMonthCalender, previousMonthCalender, changeMonthCalender } from './Store';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,12 +25,21 @@ const useStyles = makeStyles((theme) => ({
 
 const Navigation = (props) => {
     const classes = useStyles();
+    const [startDate, setStartDate] = useState(new Date());
+    const handleSelectCalender = (date) => {
+        props.onClickChange(date)
+        setStartDate(date)
+    }
+
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
+                        <DatePicker
+                            selected={startDate}
+                            onChange={handleSelectCalender}
+                        />
                     </IconButton>
                     <Typography variant="h6" className={classes.title}>
                         <ArrowBackIosIcon onClick={props.onClickPrevious}>＜</ArrowBackIosIcon>
@@ -51,7 +60,8 @@ function mapDispatchToProps(dispatch) {
     return {
         onClickPrevious: () => dispatch({ type: "PREVIOUS" }),
         onClickNext: () => dispatch({ type: "NEXT" }),
+        onClickChange: (date) => dispatch({ type: "CHANGE_MONTH", date:date }),
     };
 }
 
-export default connect(calenderStateToProps,mapDispatchToProps)(Navigation)
+export default connect(calenderStateToProps, mapDispatchToProps)(Navigation)

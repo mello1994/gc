@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import CalenderElement from './CalendarElement';
 import { getCalender, getStringDate } from '../common/dateUtil';
-import AddScheduleDialog from './AddScheduleDialog';
 import '../Calender.css';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,7 +16,6 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const useStyles = makeStyles((theme) => ({
@@ -89,8 +87,7 @@ const CalendarBoard = (props) => {
                 <TextField
                     margin="dense"
                     id="time"
-                    label="time"
-                    type="text"
+                    type="date"
                     fullWidth
                     onChange={(e) => setTime(e.target.value)}
                 />
